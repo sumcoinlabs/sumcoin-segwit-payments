@@ -1,13 +1,15 @@
 const bitcoin = require('bitcoinjs-lib')
 const request = require('request')
+const networks = require('./networks')
 const MIN_RELAY_FEE = 1000
 const DEFAULT_SAT_PER_BYTE = 10
+const DERIVE_PATH = "m/49'/2'/0'/0"
 function SegwitDepositUtils (options) {
   if (!(this instanceof SegwitDepositUtils)) return new SegwitDepositUtils(options)
   let self = this
   self.options = Object.assign({}, options || {})
   if (!self.options.insightUrl) {
-    self.options.insightUrl = 'https://blockexplorer.com/api/'
+    self.options.insightUrl = 'https://insight.litecore.io/api/'
     console.log('WARN: Using default bitcoin block explorer. It is highly suggested you set one yourself!', self.options.insightUrl)
   }
 
@@ -15,17 +17,17 @@ function SegwitDepositUtils (options) {
     self.options.feePerByte = DEFAULT_SAT_PER_BYTE
   }
   if (!self.options.network || (self.options.network === 'mainnet')) {
-    self.options.network = bitcoin.networks.mainnet
+    self.options.network = networks.mainnet
     if (!self.options.backupBroadcastUrl) {
-      self.options.backupBroadcastUrl = 'https://btc.faa.st/insight-api/'
+      self.options.backupBroadcastUrl = 'https://insight.litecore.io/api/'
     }
   } else if (self.options.network === 'testnet') {
-    self.options.network = bitcoin.networks.testnet
+    self.options.network = networks.testnet
     if (!self.options.backupBroadcastUrl) {
-      self.options.backupBroadcastUrl = 'https://tbtc.faa.st/insight-api/'
+      self.options.backupBroadcastUrl = 'https://insight.litecore.io/api/'
     }
   } else {
-    return new Error('Invalid network provided ' + self.options.network)
+    throw new Error('Invalid network provided ' + self.options.network)
   }
   // if (!self.options.password) throw new Error('SegwitDepositUtils: password required')
   return self
@@ -45,7 +47,7 @@ SegwitDepositUtils.prototype.getPrivateKey = function (xprv, path) {
   if (!xprv) throw new Error('Xprv is null. Bad things will happen to you.')
   // create the hd wallet
   const node = bitcoin.HDNode.fromBase58(xprv, self.options.network)
-  let child = node.derivePath("m/44'/0'/0'/0")
+  let child = node.derivePath(DERIVE_PATH)
   let nodeDerivation = child.derive(0).derive(path)
   return nodeDerivation.keyPair.toWIF()
 }
@@ -70,7 +72,7 @@ SegwitDepositUtils.prototype.generateNewKeys = function (entropy) {
 SegwitDepositUtils.prototype.getXpubFromXprv = function (xprv) {
   let self = this
   let node = bitcoin.HDNode.fromBase58(xprv, self.options.network)
-  let child = node.derivePath("m/44'/0'/0'/0")
+  let child = node.derivePath(DERIVE_PATH)
   // let derivedPubKey = key.derive("m/44'/60'/0'/0").hdPublicKey
   return child.neutered().toBase58()
 }
@@ -106,7 +108,7 @@ SegwitDepositUtils.prototype.getUTXOs = function (xpub, path, done) {
         cleanUTXOs.push(utxo)
       })
       console.log('TESTNET ENABLED: Clipping UTXO length to 2 for test purposes')
-      if (self.options.network === bitcoin.networks.testnet) {
+      if (self.options.network === networks.testnet) {
         cleanUTXOs = cleanUTXOs.slice(0, 2)
       }
       done(null, cleanUTXOs)
@@ -129,7 +131,7 @@ SegwitDepositUtils.prototype.getSweepTransaction = function (xprv, path, to, utx
   if (txfee < MIN_RELAY_FEE) txfee = MIN_RELAY_FEE
   if ((totalBalance - txfee) < txfee) return new Error('Balance too small to sweep!' + totalBalance + ' ' + txfee)
   txb.addOutput(to, totalBalance - txfee)
-  let keyPair = bitcoin.HDNode.fromBase58(xprv, self.options.network).derivePath("m/44'/0'/0'/0").derive(0).derive(path).keyPair
+  let keyPair = bitcoin.HDNode.fromBase58(xprv, self.options.network).derivePath(DERIVE_PATH).derive(0).derive(path).keyPair
   let redeemScript = bitcoin.script.witnessPubKeyHash.output.encode(bitcoin.crypto.hash160(keyPair.getPublicKeyBuffer()))
   for (let i = 0; i < utxo.length; i++) {
     txb.sign(i,
