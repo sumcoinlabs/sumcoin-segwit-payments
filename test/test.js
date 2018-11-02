@@ -93,7 +93,7 @@ describe('Mainnet SegwitDepositUtils', function () {
       })
     })
   }
-  let getUTXOs = true
+  let getUTXOs = false
   if (getUTXOs) {
     it('Get UTXOs for a single address', function (done) {
       SegwitDepositUtils.getUTXOs(xpub44Btc, 1, function (err, utxos) {
@@ -110,7 +110,7 @@ describe('Mainnet SegwitDepositUtils', function () {
       done()
     })
   }
-  let broadcast = true
+  let broadcast = false
   if (broadcast) {
     it('Broadcast a sweep transaction for a single address', function (done) {
       SegwitDepositUtils.broadcastTransaction(signedTxExpected, function (err, txHash) {
