@@ -97,9 +97,9 @@ SegwitDepositUtils.prototype.getUTXOs = function (xpub, path, done) {
   let url = self.options.insightUrl + 'addr/' + address + '/utxo'
   request.get({json: true, url: url}, function (err, response, body) {
     if (!err && response.statusCode !== 200) {
-      return done(new Error('Unable to get UTXOs from ' + url))
+      return done(new Error('Unable to get UTXOs from ' + url + ' - status ' + response.statusCode))
     } else if (body.length === 0) {
-      return done(new Error('Unable to get UTXOs from ' + url))
+      return done(new Error('Unable to get UTXOs from ' + url + ' - empty response'))
     } else {
       let cleanUTXOs = []
       body.forEach(function (utxo) {
@@ -108,8 +108,8 @@ SegwitDepositUtils.prototype.getUTXOs = function (xpub, path, done) {
         delete utxo['ts']
         cleanUTXOs.push(utxo)
       })
-      console.log('TESTNET ENABLED: Clipping UTXO length to 2 for test purposes')
       if (self.options.network === networks.testnet) {
+        console.log('TESTNET ENABLED: Clipping UTXO length to 2 for test purposes')
         cleanUTXOs = cleanUTXOs.slice(0, 2)
       }
       done(null, cleanUTXOs)
