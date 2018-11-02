@@ -14,7 +14,7 @@
     "url": "git+https://github.com/go-faast/litecoin-segwit-payments.git"
   },
   "keywords": [
-    "bitcoin",
+    "litecoin",
     "segwit",
     "blockchain",
     "faast",
