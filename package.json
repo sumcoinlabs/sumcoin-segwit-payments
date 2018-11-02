@@ -1,7 +1,7 @@
 {
-  "name": "bitcoin-segwit-payments",
+  "name": "litecoin-segwit-payments",
   "version": "0.0.2",
-  "description": "lightweight bitcoin payment processing with segwit",
+  "description": "lightweight litecoin payment processing with segwit",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/go-faast/bitcoin-segwit-payments.git"
+    "url": "git+https://github.com/go-faast/litecoin-segwit-payments.git"
   },
   "keywords": [
     "bitcoin",
@@ -24,9 +24,9 @@
   "author": "Moe Adham",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/go-faast/bitcoin-segwit-payments/issues"
+    "url": "https://github.com/go-faast/litecoin-segwit-payments/issues"
   },
-  "homepage": "https://github.com/go-faast/bitcoin-segwit-payments#readme",
+  "homepage": "https://github.com/go-faast/litecoin-segwit-payments#readme",
   "devDependencies": {
     "async": "^2.6.1",
     "chai": "^4.1.2",
