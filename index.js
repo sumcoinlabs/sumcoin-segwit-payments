@@ -3,7 +3,8 @@ const request = require('request')
 const networks = require('./networks')
 const MIN_RELAY_FEE = 1000
 const DEFAULT_SAT_PER_BYTE = 10
-const DERIVE_PATH = "m/49'/2'/0'/0"
+const DERIVE_PATH = "m/49'/2'/0'"
+
 function SegwitDepositUtils (options) {
   if (!(this instanceof SegwitDepositUtils)) return new SegwitDepositUtils(options)
   let self = this
@@ -149,16 +150,15 @@ SegwitDepositUtils.prototype.broadcastTransaction = function (txObject, done, re
   let textBody = '{"rawtx":"' + txObject.signedTx + '"}'
   const broadcastHeaders = {
     'pragma': 'no-cache',
-    'cookie': '__cfduid=d365c2b104e8c0e947ad9991de7515e131528318303',
-    'origin': 'https://blockexplorer.com',
+    'origin': 'https://insight.litecore.io',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'en-US,en;q=0.9,fr;q=0.8,es;q=0.7',
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
     'content-type': 'application/json;charset=UTF-8',
     'accept': 'application/json, text/plain, */*',
     'cache-control': 'no-cache',
-    'authority': 'blockexplorer.com',
-    'referer': 'https://blockexplorer.com/tx/send'
+    'authority': 'insight.litecore.io',
+    'referer': 'https://insight.litecore.io/tx/send'
   }
   let url
   if (retryUrl) url = retryUrl
