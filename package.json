@@ -1,6 +1,6 @@
 {
-  "name": "litecoin-segwit-payments",
-  "version": "0.0.2",
+  "name": "@faast/litecoin-segwit-payments",
+  "version": "0.0.1",
   "description": "lightweight litecoin payment processing with segwit",
   "main": "index.js",
   "directories": {
