@@ -20,12 +20,12 @@ function SegwitDepositUtils (options) {
   if (!self.options.network || (self.options.network === 'mainnet')) {
     self.options.network = networks.mainnet
     if (!self.options.backupBroadcastUrl) {
-      self.options.backupBroadcastUrl = 'https://ltc1.trezor.io/api/sendtx/'
+      self.options.backupBroadcastUrl = 'https://sum1.trezor.io/api/sendtx/'
     }
   } else if (self.options.network === 'testnet') {
     self.options.network = networks.testnet
     if (!self.options.backupBroadcastUrl) {
-      self.options.backupBroadcastUrl = 'https://ltc1.trezor.io/api/sendtx/'
+      self.options.backupBroadcastUrl = 'https://sum1.trezor.io/api/sendtx/'
     }
   } else {
     throw new Error('Invalid network provided ' + self.options.network)
@@ -150,7 +150,7 @@ SegwitDepositUtils.prototype.broadcastTransaction = function (txObject, done, re
   let textBody = txObject.signedTx
   let url
   if (retryUrl) url = retryUrl
-  else url = 'https://ltc1.trezor.io/api/sendtx/'
+  else url = 'https://sum1.trezor.io/api/sendtx/'
   var options = {
     url: url,
     method: 'POST',

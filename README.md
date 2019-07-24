@@ -1,7 +1,7 @@
-litecoin-segwit-payments
+sumcoin-segwit-payments
 =================
 
-Library to assist in payment processing on Litecoin. It first allows for generation
+Library to assist in payment processing on Sumcoin. It first allows for generation
 of address according to the [BIP44 standard](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
 [Bitcoin-js](https://github.com/bitcoinjs/bitcoinjs-lib) is used for  deterministic public and private keys.
@@ -10,12 +10,12 @@ Please see the BIP32 standard for more information ([BIP32](https://github.com/b
 ## Getting Started
 
 ```bash
-npm install --save litecoin-segwit-payments
+npm install --save sumcoin-segwit-payments
 ```
 
 Create a new wallet (DON'T DO THIS ON PRODUCTION):
 ```js
-let segwitPayments = require('litecoin-segwit-payments')()
+let segwitPayments = require('sumcoin-segwit-payments')()
 let keys = segwitPayments.generateNewKeys('really random entropy here')
 console.log(keys.xpub)
 console.log(keys.xprv)

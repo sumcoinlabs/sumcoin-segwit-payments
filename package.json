@@ -1,7 +1,7 @@
 {
-  "name": "@faast/litecoin-segwit-payments",
+  "name": "@faast/sumcoin-segwit-payments",
   "version": "0.0.1",
-  "description": "lightweight litecoin payment processing with segwit",
+  "description": "lightweight sumcoin payment processing with segwit",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/go-faast/litecoin-segwit-payments.git"
+    "url": "git+https://github.com/sumcoinlabs/sumcoin-segwit-payments.git"
   },
   "keywords": [
-    "litecoin",
+    "sumcoin",
     "segwit",
     "blockchain",
     "faast",
@@ -24,9 +24,9 @@
   "author": "Moe Adham",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/go-faast/litecoin-segwit-payments/issues"
+    "url": "https://github.com/sumcoinlabs/sumcoin-segwit-payments/issues"
   },
-  "homepage": "https://github.com/go-faast/litecoin-segwit-payments#readme",
+  "homepage": "https://github.com/sumcoinlabs/sumcoin-segwit-payments#readme",
   "devDependencies": {
     "async": "^2.6.1",
     "chai": "^4.1.2",
