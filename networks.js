@@ -5,21 +5,21 @@ module.exports = {
   mainnet: {
     messagePrefix: '\u0019Sumcoin Signed Message:\n',
     bip32: {
-      public: 0x0488b41c, //complete
-      private: 0x0488abe6 //complete
+      public: 0x0488b41c, 
+      private: 0x0488abe6 
     },
-    pubKeyHash: 0x30, //todo
-    scriptHash: 0x32, //todo
-    wif: 0xb0 //todo
+    pubKeyHash: 0x3f, 
+    scriptHash: 0xc8, 
+    wif: 0xbf 
   },
   testnet: {
     messagePrefix: '\u0019Sumcoin Signed Message:\n',
     bip32: {
-      public: 0x0488b41c, //complete
-      private: 0x0488abe6 //complete
+      public: 0x0488b41c, 
+      private: 0x0488abe6 
     },
-    pubKeyHash: 0x6f, //todo
-    scriptHash: 0x3a, //todo
-    wif: 0xef //todo
+    pubKeyHash: 0x3f, 
+    scriptHash: 0xc8, 
+    wif: 0xbf 
   }
 }
