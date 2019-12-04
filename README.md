@@ -1,7 +1,7 @@
 sumcoin-segwit-payments
 =================
 
-## Source : https://github.com/sumcoinlabs/sumcoin
+## Source : https://github.com/sumcoinlabs/sumcoin-segwit-payments
 
 Library to assist in payment processing on Sumcoin. It first allows for generation
 of address according to the [BIP44 standard](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
